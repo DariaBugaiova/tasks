@@ -1,0 +1,19 @@
+<section class="tasks-section">
+  <span class="tasks-list-section">
+    <app-task-add-form (addedTask)="onTaskAdded($event)" (saveTasks)="onSaveTasks()"></app-task-add-form>
+    <app-task-form-filter [dataSource]="tasks"
+                          (selectAll)="onSelectedAll()"
+                          (completedSelected)="onCompletedSelected()"
+                          (uncompletedSelected)="onUncompletedSelected()">
+    </app-task-form-filter>
+    <hr>
+    <ul>
+      <li *ngFor="let task of tasks | searchFilterByStatusPipe : searchValue, let i = index">
+        <input type="checkbox" value="checked" (click)="changeValue(checked, task)">
+        <b>{{ task.title }}</b> Status: {{ task.status }}
+      </li>
+    </ul>
+  </span>
+</section>
+
+
